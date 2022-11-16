@@ -1,0 +1,25 @@
+{
+  "name": "okmtyuta-engineering",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run-ts": "./node_modules/.bin/ts-node",
+    "format": "prettier --write packages"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/presentation/rest-api/okmtyuta-engineering-api",
+    "packages/presentation/web/okmtyuta-engineering-web",
+    "packages/library",
+    "packages/infrastructure"
+  ],
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 25000
+  }
+}
