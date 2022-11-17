@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "run-ts": "./node_modules/.bin/ts-node",
+    "ts-run": "./node_modules/.bin/ts-node",
     "format": "prettier --write packages"
   },
   "author": "",

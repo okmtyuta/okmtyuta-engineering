@@ -1,0 +1,1 @@
+{"version":3,"file":"Article.js","sourceRoot":"","sources":["../../src/db/typeorm/entity/Article.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qCAAiE;AAGjE,IAAa,OAAO,GAApB,MAAa,OAAO;CASnB,CAAA;AAPC;IADC,IAAA,gCAAsB,GAAE;;mCACb;AAGZ;IADC,IAAA,gBAAM,GAAE;;sCACM;AAGf;IADC,IAAA,gBAAM,EAAC,MAAM,CAAC;;wCACE;AARN,OAAO;IADnB,IAAA,gBAAM,GAAE;GACI,OAAO,CASnB;AATY,0BAAO"}
