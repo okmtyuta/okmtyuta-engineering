@@ -1,13 +1,76 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Tag } from "./Tag";
 
 @Entity()
 export class Article {
-  @PrimaryGeneratedColumn()
-  id!: string;
+  @PrimaryGeneratedColumn({
+    type: "smallint",
+    comment: "記事のID"
+  })
+  readonly articleId!: string;
 
-  @Column()
+  @Column({
+    type: "text",
+    comment: "記事のタイトル"
+  })
   title!: string;
 
-  @Column("text")
+  @Column({
+    type: "text",
+    comment: "記事の内容"
+  })
   content!: string;
+
+  @Column({
+    type: "text",
+    comment: "記事の概要"
+  })
+  description!: string;
+
+  @Column({
+    type: "date",
+    comment: "記事の投稿日"
+  })
+  postedAt!: Date;
+
+  @Column({
+    type: "date",
+    comment: "記事の更新日",
+    nullable: true
+  })
+  updatedAt: Date | null;
+
+  @Column({
+    type: "text",
+    array: true,
+    comment: "記事の参考文献",
+    nullable: true,
+  })
+  references: string[] | null
+
+  @Column({
+    type: "boolean",
+    comment: "記事の公開設定",
+    nullable: true,
+  })
+  isPublic!: boolean;
+
+  @Column({
+    type: "boolean",
+    comment: "記事のピックアップ設定",
+  })
+  isPickedUp!: boolean;
+
+  @Column({
+    type: "text",
+    comment: "記事のサムネイルへのパス",
+    nullable: true,
+  })
+  thumbnail: string | null;
+
+  @ManyToMany(() => Tag, (tag) => tag.articles, {
+    onDelete: "SET NULL",
+    nullable: true,
+  })
+  tags: Tag[] | null;
 }
