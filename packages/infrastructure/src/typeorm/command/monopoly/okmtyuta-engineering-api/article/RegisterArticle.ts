@@ -1,6 +1,7 @@
-import { RegisterArticleDto } from './dto/RegisterArtilce.dto'
-import { Article } from '@okmtyuta-engineering/library/lib/entity/Article';
+import { RegisterArticleDto } from './dto/RegisterArticle.dto'
+import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article';
 import { AppDataSource } from "../../../../config/data-source";
+import { FetchUserById } from 'src/typeorm/query/monopoly/okmtyuta-engineering/user/FetchUserById';
 
 interface RegisterArticleResult {
   article: Article
@@ -27,7 +28,8 @@ export class RegisterArticle implements IRegisterArticle {
         postedAt: new Date(),
         updatedAt: null,
         isPickedUp: false,
-        tags: null,
+        tags: params.tags,
+        user: params.user,
       })
 
       const createdArticle = await articleRepository.save(article)
@@ -36,7 +38,7 @@ export class RegisterArticle implements IRegisterArticle {
         article: createdArticle,
       }
     } catch (error) {
-      throw Error()
+      throw Error(error)
     } finally {
       await dataSource.destroy()
     }

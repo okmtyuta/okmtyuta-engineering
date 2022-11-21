@@ -99,18 +99,28 @@ export const RegisterArticle = () => {
           Delete
         </Button>
       </div>
-      <TextField id="outlined-basic" label="title" variant="outlined" onChange={async (event) => {
-        setArticle({
-          ...article,
-          title: event.target.value
-        })
-      }} />
-      <TextField id="outlined-basic" label="content" variant="outlined" onChange={async (event) => {
-        setArticle({
-          ...article,
-          content: event.target.value
-        })
-      }} />
+      <TextField
+        id="outlined-basic"
+        label="title"
+        variant="outlined"
+        onChange={async (event) => {
+          setArticle({
+            ...article,
+            title: event.target.value,
+          })
+        }}
+      />
+      <TextField
+        id="outlined-basic"
+        label="content"
+        variant="outlined"
+        onChange={async (event) => {
+          setArticle({
+            ...article,
+            content: event.target.value,
+          })
+        }}
+      />
 
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         {articles.map((article) => {

@@ -1,4 +1,4 @@
-import { Article } from '@okmtyuta-engineering/library/lib/entity/Article'
+import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article'
 import { DeleteResult } from 'typeorm'
 import { AppDataSource } from '../../../../config/data-source'
 import { DeleteArticleByIdDto } from './dto/DeleteArticleById.dto'

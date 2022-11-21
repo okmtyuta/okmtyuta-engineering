@@ -1,4 +1,4 @@
-import { Article } from '@okmtyuta-engineering/library/lib/entity/Article';
+import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article';
 import { FetchArticleByIdDto } from './dto/FetchArticleById.dto';
 interface FetchArticleByIdResult {
     article: Article;

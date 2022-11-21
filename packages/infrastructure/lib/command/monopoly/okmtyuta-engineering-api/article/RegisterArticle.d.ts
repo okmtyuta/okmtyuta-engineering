@@ -1,5 +1,5 @@
-import { RegisterArticleDto } from './dto/RegisterArtilce.dto';
-import { Article } from '@okmtyuta-engineering/library/lib/entity/Article';
+import { RegisterArticleDto } from './dto/RegisterArticle.dto';
+import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article';
 interface RegisterArticleResult {
     article: Article;
 }

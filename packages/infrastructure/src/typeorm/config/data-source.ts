@@ -1,7 +1,8 @@
 import 'reflect-metadata'
-import { Article } from '@okmtyuta-engineering/library/lib/entity/Article'
-import { Tag } from '@okmtyuta-engineering/library/lib/entity/Tag'
+import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article'
+import { Tag } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Tag'
 import { DataSource } from 'typeorm'
+import { User } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/User'
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -12,6 +13,6 @@ export const AppDataSource = new DataSource({
   database: 'okmtyuta',
   synchronize: true,
   logging: false,
-  entities: [Article, Tag],
+  entities: [Article, Tag, User],
   subscribers: [],
 })

@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const FetchArticles_1 = require("../FetchArticles");
+const FetchAllArticles_1 = require("../FetchAllArticles");
 describe("FetchArticles", () => {
     it("fetch", async () => {
-        const articles = await new FetchArticles_1.FetchArticles().fetch();
-        console.log(articles);
+        const articles = await new FetchAllArticles_1.FetchAllArticles().fetch();
+        console.log(articles.articles);
     });
 });
 //# sourceMappingURL=FetchArticles.spec.js.map

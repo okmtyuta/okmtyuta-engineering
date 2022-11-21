@@ -1,22 +1,23 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Article } from "./Article";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn, JoinTable } from 'typeorm'
+import { Article } from './Article'
 
 @Entity()
 export class Tag {
   @PrimaryGeneratedColumn({
-    type: "smallint",
-    comment: "タグのID"
+    type: 'smallint',
+    comment: 'タグのID',
   })
-  readonly tagId!: string;
+  readonly tagId!: string
 
   @Column({
-    type: "text",
-    comment: "タグの名前"
+    type: 'text',
+    comment: 'タグの名前',
   })
   name!: string
 
   @ManyToMany(() => Article, (article) => article.tags, {
-    onDelete: "SET NULL"
+    onDelete: "CASCADE",
+    nullable: true,
   })
-  articles: Article[]
+  articles: Article[];
 }

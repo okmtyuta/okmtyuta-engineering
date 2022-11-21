@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterArticle = void 0;
-const Article_1 = require("@okmtyuta-engineering/library/lib/entity/Article");
+const Article_1 = require("@okmtyuta-engineering/library/lib/db/typeorm/entity/Article");
 const data_source_1 = require("../../../../config/data-source");
 class RegisterArticle {
     async register(params) {
@@ -18,7 +18,8 @@ class RegisterArticle {
                 postedAt: new Date(),
                 updatedAt: null,
                 isPickedUp: false,
-                tags: null,
+                tags: params.tags,
+                user: params.user,
             });
             const createdArticle = await articleRepository.save(article);
             return {
@@ -26,7 +27,7 @@ class RegisterArticle {
             };
         }
         catch (error) {
-            throw Error();
+            throw Error(error);
         }
         finally {
             await dataSource.destroy();

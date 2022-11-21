@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FetchArticleById = void 0;
-const Article_1 = require("@okmtyuta-engineering/library/lib/entity/Article");
+const Article_1 = require("@okmtyuta-engineering/library/lib/db/typeorm/entity/Article");
 const data_source_1 = require("../../../../config/data-source");
 class FetchArticleById {
     async fetch(params) {
