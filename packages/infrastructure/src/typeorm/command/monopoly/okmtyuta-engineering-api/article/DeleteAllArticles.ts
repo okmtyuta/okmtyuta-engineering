@@ -1,6 +1,5 @@
 import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article'
-import { DeleteResult } from 'typeorm'
-import { AppDataSource } from '../../../../config/data-source'
+import { DataSource, DeleteResult } from 'typeorm'
 
 interface DeleteAllArticleResult {
   deleteResult: DeleteResult
@@ -11,19 +10,23 @@ interface IDeleteAllArticle {
 }
 
 export class DeleteAllArticle implements IDeleteAllArticle {
+  constructor(private dataSource: DataSource) {
+    this.dataSource = dataSource
+  }
+
   async execute(): Promise<DeleteAllArticleResult> {
-    const dataSource = await AppDataSource.initialize()
+    await this.dataSource.initialize()
 
     try {
-      const articleRepository = await dataSource.getRepository(Article);
-      const deleteResult = await articleRepository.createQueryBuilder("article").delete().from(Article).execute();
+      const articleRepository = await this.dataSource.getRepository(Article)
+      const deleteResult = await articleRepository.createQueryBuilder('article').delete().from(Article).execute()
       return {
-        deleteResult: deleteResult
+        deleteResult: deleteResult,
       }
     } catch (error) {
       throw Error()
     } finally {
-      await dataSource.destroy()
+      await this.dataSource.destroy()
     }
   }
 }

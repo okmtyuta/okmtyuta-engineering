@@ -1,7 +1,6 @@
-
-import { Tag } from "@okmtyuta-engineering/library/lib/db/typeorm/entity/Tag";
-import { AppDataSource } from "../../../../config/data-source";
-import { RegisterTagDto } from "./dto/RegisterTag.dto";
+import { Tag } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Tag'
+import { DataSource } from 'typeorm'
+import { RegisterTagDto } from './dto/RegisterTag.dto'
 
 interface RegisterTagResult {
   tag: Tag
@@ -12,14 +11,17 @@ interface IRegisterTag {
 }
 
 export class RegisterTag implements IRegisterTag {
+  constructor(private dataSource: DataSource) {
+    this.dataSource = dataSource
+  }
   async execute(params: RegisterTagDto): Promise<RegisterTagResult> {
-    const dataSource = await AppDataSource.initialize()
+    await this.dataSource.initialize()
 
     try {
-      const tagRepository = await dataSource.getRepository(Tag)
+      const tagRepository = await this.dataSource.getRepository(Tag)
 
       const tag = tagRepository.create({
-        name: params.name
+        name: params.name,
       })
       const createdTag = await tagRepository.save(tag)
 
@@ -29,7 +31,7 @@ export class RegisterTag implements IRegisterTag {
     } catch (error) {
       throw Error()
     } finally {
-      await dataSource.destroy()
+      await this.dataSource.destroy()
     }
   }
 }

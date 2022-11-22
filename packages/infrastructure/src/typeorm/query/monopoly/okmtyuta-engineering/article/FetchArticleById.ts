@@ -1,5 +1,5 @@
 import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article'
-import { AppDataSource } from '../../../../config/data-source'
+import { DataSource } from 'typeorm'
 import { FetchArticleByIdDto } from './dto/FetchArticleById.dto'
 
 interface FetchArticleByIdResult {
@@ -11,15 +11,19 @@ interface IFetchArticleById {
 }
 
 export class FetchArticleById implements IFetchArticleById {
+  constructor(private dataSource: DataSource) {
+    this.dataSource = dataSource
+  }
+
   async fetch(params: FetchArticleByIdDto): Promise<FetchArticleByIdResult> {
-    const dataSource = await AppDataSource.initialize()
+    await this.dataSource.initialize()
     try {
-      const articleRepository = await dataSource.getRepository(Article);
+      const articleRepository = await this.dataSource.getRepository(Article)
       const article = await articleRepository.findOne({
         where: {
-          articleId: params.articleId
-        }
-      });
+          articleId: params.articleId,
+        },
+      })
 
       if (!article) {
         throw Error(`NOT FOUND ARTICLE BY ID ${params.articleId}`)
@@ -29,9 +33,9 @@ export class FetchArticleById implements IFetchArticleById {
         article: article,
       }
     } catch (error) {
-      return error;
+      return error
     } finally {
-      await dataSource.destroy()
+      await this.dataSource.destroy()
     }
   }
 }

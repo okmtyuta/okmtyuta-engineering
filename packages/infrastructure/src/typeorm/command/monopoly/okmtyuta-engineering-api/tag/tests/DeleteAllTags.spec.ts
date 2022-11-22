@@ -1,8 +1,9 @@
-import { DeleteAllTags } from "../DeleteAllTags"
+import { DeleteAllTags } from '../DeleteAllTags'
+import { AppDataSource } from '../../../../../config/data-source'
 
-describe("DeleteAllTags", () => {
-  it("execute", async () => {
-    const deleteResult = await new DeleteAllTags().execute();
+describe('DeleteAllTags', () => {
+  it('execute', async () => {
+    const deleteResult = await new DeleteAllTags(AppDataSource).execute()
 
     console.log(deleteResult)
   })

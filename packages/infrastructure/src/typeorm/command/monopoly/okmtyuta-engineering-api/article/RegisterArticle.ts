@@ -1,7 +1,6 @@
 import { RegisterArticleDto } from './dto/RegisterArticle.dto'
-import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article';
-import { AppDataSource } from "../../../../config/data-source";
-import { FetchUserById } from 'src/typeorm/query/monopoly/okmtyuta-engineering/user/FetchUserById';
+import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article'
+import { DataSource } from 'typeorm'
 
 interface RegisterArticleResult {
   article: Article
@@ -12,11 +11,15 @@ interface IRegisterArticle {
 }
 
 export class RegisterArticle implements IRegisterArticle {
+  constructor(private dataSource: DataSource) {
+    this.dataSource = dataSource
+  }
+
   async register(params: RegisterArticleDto): Promise<RegisterArticleResult> {
-    const dataSource = await AppDataSource.initialize()
+    await this.dataSource.initialize()
 
     try {
-      const articleRepository = await dataSource.getRepository(Article)
+      const articleRepository = await this.dataSource.getRepository(Article)
 
       const article = await articleRepository.create({
         title: params.title,
@@ -40,7 +43,7 @@ export class RegisterArticle implements IRegisterArticle {
     } catch (error) {
       throw Error(error)
     } finally {
-      await dataSource.destroy()
+      await this.dataSource.destroy()
     }
   }
 }

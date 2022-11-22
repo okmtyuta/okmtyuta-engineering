@@ -2,12 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FetchAllUsers = void 0;
 const User_1 = require("@okmtyuta-engineering/library/lib/db/typeorm/entity/User");
-const data_source_1 = require("../../../../config/data-source");
 class FetchAllUsers {
+    constructor(dataSource) {
+        this.dataSource = dataSource;
+        this.dataSource = dataSource;
+    }
     async execute() {
-        const dataSource = await data_source_1.AppDataSource.initialize();
+        await this.dataSource.initialize();
         try {
-            const userRepository = await dataSource.getRepository(User_1.User);
+            const userRepository = await this.dataSource.getRepository(User_1.User);
             const users = await userRepository.find();
             return {
                 users: users,
@@ -16,7 +19,7 @@ class FetchAllUsers {
         catch (error) {
         }
         finally {
-            await dataSource.destroy();
+            await this.dataSource.destroy();
         }
     }
 }

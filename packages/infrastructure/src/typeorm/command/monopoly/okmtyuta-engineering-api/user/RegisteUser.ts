@@ -1,6 +1,6 @@
 import { RegisterUserDto } from './dto/RegisterUserDto';
 import { User } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/User';
-import { AppDataSource } from "../../../../config/data-source";
+import { DataSource } from 'typeorm';
 
 interface RegisterUserResult {
   user: User
@@ -11,11 +11,16 @@ interface IRegisterUser {
 }
 
 export class RegisterUser implements IRegisterUser {
+  constructor(
+    private dataSource: DataSource
+  ) {
+    this.dataSource = dataSource
+  }
   async execute(params: RegisterUserDto): Promise<RegisterUserResult> {
-    const dataSource = await AppDataSource.initialize()
+    await this.dataSource.initialize()
 
     try {
-      const userRepository = await dataSource.getRepository(User)
+      const userRepository = await this.dataSource.getRepository(User)
 
       const user = await userRepository.create({
         name: params.name
@@ -29,7 +34,7 @@ export class RegisterUser implements IRegisterUser {
     } catch (error) {
       throw Error()
     } finally {
-      await dataSource.destroy()
+      await this.dataSource.destroy()
     }
   }
 }

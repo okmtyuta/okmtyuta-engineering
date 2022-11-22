@@ -1,5 +1,5 @@
 import { User } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/User'
-import { AppDataSource } from '../../../../config/data-source'
+import { DataSource } from 'typeorm'
 import { FetchUserByIdDto } from './dto/FetchUserById.dto'
 
 interface FetchUserByIdResult {
@@ -11,15 +11,19 @@ interface IFetchUserById {
 }
 
 export class FetchUserById implements IFetchUserById {
+  constructor(private dataSource: DataSource) {
+    this.dataSource = dataSource
+  }
+
   async execute(params: FetchUserByIdDto): Promise<FetchUserByIdResult> {
-    const dataSource = await AppDataSource.initialize()
+    await this.dataSource.initialize()
 
     try {
-      const userRepository = await dataSource.getRepository(User)
+      const userRepository = await this.dataSource.getRepository(User)
       const user = await userRepository.findOne({
         where: {
-          userId: params.userId
-        }
+          userId: params.userId,
+        },
       })
 
       return {
@@ -27,7 +31,7 @@ export class FetchUserById implements IFetchUserById {
       }
     } catch (error) {
     } finally {
-      await dataSource.destroy()
+      await this.dataSource.destroy()
     }
   }
 }

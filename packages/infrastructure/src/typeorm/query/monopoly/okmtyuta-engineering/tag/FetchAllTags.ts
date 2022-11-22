@@ -1,5 +1,5 @@
 import { Tag } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Tag'
-import { AppDataSource } from '../../../../config/data-source'
+import { DataSource } from 'typeorm'
 
 interface FetchAllTagsResult {
   tags: Tag[]
@@ -10,11 +10,15 @@ interface IFetchAllTags {
 }
 
 export class FetchAllTags implements IFetchAllTags {
+  constructor(private dataSource: DataSource) {
+    this.dataSource = dataSource
+  }
+
   async execute(): Promise<FetchAllTagsResult> {
-    const dataSource = await AppDataSource.initialize()
+    await this.dataSource.initialize()
 
     try {
-      const tagRepository = await dataSource.getRepository(Tag)
+      const tagRepository = await this.dataSource.getRepository(Tag)
       const tags = await tagRepository.find()
 
       return {
@@ -22,7 +26,7 @@ export class FetchAllTags implements IFetchAllTags {
       }
     } catch (error) {
     } finally {
-      await dataSource.destroy()
+      await this.dataSource.destroy()
     }
   }
 }

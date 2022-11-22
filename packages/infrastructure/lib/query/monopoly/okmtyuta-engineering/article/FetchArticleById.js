@@ -2,16 +2,19 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FetchArticleById = void 0;
 const Article_1 = require("@okmtyuta-engineering/library/lib/db/typeorm/entity/Article");
-const data_source_1 = require("../../../../config/data-source");
 class FetchArticleById {
+    constructor(dataSource) {
+        this.dataSource = dataSource;
+        this.dataSource = dataSource;
+    }
     async fetch(params) {
-        const dataSource = await data_source_1.AppDataSource.initialize();
+        await this.dataSource.initialize();
         try {
-            const articleRepository = await dataSource.getRepository(Article_1.Article);
+            const articleRepository = await this.dataSource.getRepository(Article_1.Article);
             const article = await articleRepository.findOne({
                 where: {
-                    articleId: params.articleId
-                }
+                    articleId: params.articleId,
+                },
             });
             if (!article) {
                 throw Error(`NOT FOUND ARTICLE BY ID ${params.articleId}`);
@@ -24,7 +27,7 @@ class FetchArticleById {
             return error;
         }
         finally {
-            await dataSource.destroy();
+            await this.dataSource.destroy();
         }
     }
 }

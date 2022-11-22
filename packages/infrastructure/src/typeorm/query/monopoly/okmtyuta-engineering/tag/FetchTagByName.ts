@@ -1,7 +1,6 @@
 import { Tag } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Tag'
-import { AppDataSource } from '../../../../config/data-source'
+import { DataSource } from 'typeorm'
 import { FetchTagByNameDto } from './dto/FetchTagByName.dto'
-
 
 interface FetchTagByNameResult {
   tag: Tag
@@ -12,23 +11,27 @@ interface IFetchTagByName {
 }
 
 export class FetchTagByName implements IFetchTagByName {
+  constructor(private dataSource: DataSource) {
+    this.dataSource = dataSource
+  }
+
   async fetch(params: FetchTagByNameDto): Promise<FetchTagByNameResult> {
-    const dataSource = await AppDataSource.initialize()
+    await this.dataSource.initialize()
 
     try {
-      const tagRepository = await dataSource.getRepository(Tag);
+      const tagRepository = await this.dataSource.getRepository(Tag)
       const tag = await tagRepository.findOne({
         where: {
-          name: params.name
-        }
-      });
+          name: params.name,
+        },
+      })
 
       return {
         tag: tag,
       }
     } catch (error) {
     } finally {
-      await dataSource.destroy()
+      await this.dataSource.destroy()
     }
   }
 }

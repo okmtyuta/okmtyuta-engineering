@@ -2,22 +2,25 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteAllArticle = void 0;
 const Article_1 = require("@okmtyuta-engineering/library/lib/db/typeorm/entity/Article");
-const data_source_1 = require("../../../../config/data-source");
 class DeleteAllArticle {
+    constructor(dataSource) {
+        this.dataSource = dataSource;
+        this.dataSource = dataSource;
+    }
     async execute() {
-        const dataSource = await data_source_1.AppDataSource.initialize();
+        await this.dataSource.initialize();
         try {
-            const articleRepository = await dataSource.getRepository(Article_1.Article);
-            const deleteResult = await articleRepository.createQueryBuilder("article").delete().from(Article_1.Article).execute();
+            const articleRepository = await this.dataSource.getRepository(Article_1.Article);
+            const deleteResult = await articleRepository.createQueryBuilder('article').delete().from(Article_1.Article).execute();
             return {
-                deleteResult: deleteResult
+                deleteResult: deleteResult,
             };
         }
         catch (error) {
             throw Error();
         }
         finally {
-            await dataSource.destroy();
+            await this.dataSource.destroy();
         }
     }
 }

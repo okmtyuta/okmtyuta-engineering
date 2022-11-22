@@ -2,12 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterUser = void 0;
 const User_1 = require("@okmtyuta-engineering/library/lib/db/typeorm/entity/User");
-const data_source_1 = require("../../../../config/data-source");
 class RegisterUser {
+    constructor(dataSource) {
+        this.dataSource = dataSource;
+        this.dataSource = dataSource;
+    }
     async execute(params) {
-        const dataSource = await data_source_1.AppDataSource.initialize();
+        await this.dataSource.initialize();
         try {
-            const userRepository = await dataSource.getRepository(User_1.User);
+            const userRepository = await this.dataSource.getRepository(User_1.User);
             const user = await userRepository.create({
                 name: params.name
             });
@@ -20,7 +23,7 @@ class RegisterUser {
             throw Error();
         }
         finally {
-            await dataSource.destroy();
+            await this.dataSource.destroy();
         }
     }
 }

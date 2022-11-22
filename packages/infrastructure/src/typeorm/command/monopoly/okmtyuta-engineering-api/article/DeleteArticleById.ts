@@ -1,11 +1,10 @@
 import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article'
-import { DeleteResult } from 'typeorm'
-import { AppDataSource } from '../../../../config/data-source'
+import { DataSource, DeleteResult } from 'typeorm'
 import { DeleteArticleByIdDto } from './dto/DeleteArticleById.dto'
 
 interface DeleteArticleByIdResult {
-  deleteResult: DeleteResult,
-  articleId: string,
+  deleteResult: DeleteResult
+  articleId: string
 }
 
 interface IDeleteArticleById {
@@ -13,23 +12,27 @@ interface IDeleteArticleById {
 }
 
 export class DeleteArticleById implements IDeleteArticleById {
+  constructor(private dataSource: DataSource) {
+    this.dataSource = dataSource
+  }
+  
   async execute(params: DeleteArticleByIdDto): Promise<DeleteArticleByIdResult> {
-    const dataSource = await AppDataSource.initialize()
+    await this.dataSource.initialize()
 
     try {
-      const articleRepository = await dataSource.getRepository(Article);
+      const articleRepository = await this.dataSource.getRepository(Article)
       const deleteResult = await articleRepository.delete({
-        articleId: params.articleId
+        articleId: params.articleId,
       })
 
       return {
         deleteResult: deleteResult,
-        articleId: params.articleId
+        articleId: params.articleId,
       }
-    } catch(error) {
+    } catch (error) {
       throw new Error()
     } finally {
-      dataSource.destroy()
+      this.dataSource.destroy()
     }
   }
 }

@@ -1,16 +1,17 @@
-import { RegisterUser } from "../RegisteUser"
+import { RegisterUser } from '../RegisteUser'
+import { AppDataSource } from '../../../../../config/data-source'
 
-describe("RegisterUser", () => {
-  let mockUser;
+describe('RegisterUser', () => {
+  let mockUser
 
   beforeEach(async () => {
     mockUser = {
-      name: "okmtyuta"
+      name: 'okmtyuta',
     }
   })
 
-  it("execute", async () => {
-    const user = (await new RegisterUser().execute(mockUser));
-    console.log(user);
+  it('execute', async () => {
+    const user = await new RegisterUser(AppDataSource).execute(mockUser)
+    console.log(user)
   })
 })

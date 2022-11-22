@@ -1,5 +1,5 @@
 import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article'
-import { AppDataSource } from '../../../../config/data-source'
+import { DataSource } from 'typeorm'
 
 // 返り値の型定義
 interface FetchAllArticlesResult {
@@ -13,13 +13,17 @@ interface IFetchAllArticles {
 
 // Fetchクラス本体
 export class FetchAllArticles implements IFetchAllArticles {
+  constructor(private dataSource: DataSource) {
+    this.dataSource = dataSource
+  }
+
   async fetch(): Promise<FetchAllArticlesResult> {
     // データベースとの接続
-    const dataSource = await AppDataSource.initialize()
+    await this.dataSource.initialize()
 
     try {
       // レポジトリの取得
-      const articleRepository = await dataSource.getRepository(Article)
+      const articleRepository = await this.dataSource.getRepository(Article)
 
       // すべてのarticleを取得
       const articles = await articleRepository.createQueryBuilder('article').leftJoinAndSelect('article.tags', 'tag').leftJoinAndSelect('article.user', 'user').getMany()
@@ -32,7 +36,7 @@ export class FetchAllArticles implements IFetchAllArticles {
       new Error(error)
     } finally {
       // データベースとの接続を解除
-      await dataSource.destroy()
+      await this.dataSource.destroy()
     }
   }
 }

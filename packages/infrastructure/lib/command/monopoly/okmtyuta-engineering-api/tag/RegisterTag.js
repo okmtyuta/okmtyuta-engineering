@@ -2,14 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterTag = void 0;
 const Tag_1 = require("@okmtyuta-engineering/library/lib/db/typeorm/entity/Tag");
-const data_source_1 = require("../../../../config/data-source");
 class RegisterTag {
+    constructor(dataSource) {
+        this.dataSource = dataSource;
+        this.dataSource = dataSource;
+    }
     async execute(params) {
-        const dataSource = await data_source_1.AppDataSource.initialize();
+        await this.dataSource.initialize();
         try {
-            const tagRepository = await dataSource.getRepository(Tag_1.Tag);
+            const tagRepository = await this.dataSource.getRepository(Tag_1.Tag);
             const tag = tagRepository.create({
-                name: params.name
+                name: params.name,
             });
             const createdTag = await tagRepository.save(tag);
             return {
@@ -20,7 +23,7 @@ class RegisterTag {
             throw Error();
         }
         finally {
-            await dataSource.destroy();
+            await this.dataSource.destroy();
         }
     }
 }

@@ -2,12 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterArticle = void 0;
 const Article_1 = require("@okmtyuta-engineering/library/lib/db/typeorm/entity/Article");
-const data_source_1 = require("../../../../config/data-source");
 class RegisterArticle {
+    constructor(dataSource) {
+        this.dataSource = dataSource;
+        this.dataSource = dataSource;
+    }
     async register(params) {
-        const dataSource = await data_source_1.AppDataSource.initialize();
+        await this.dataSource.initialize();
         try {
-            const articleRepository = await dataSource.getRepository(Article_1.Article);
+            const articleRepository = await this.dataSource.getRepository(Article_1.Article);
             const article = await articleRepository.create({
                 title: params.title,
                 content: params.content,
@@ -30,7 +33,7 @@ class RegisterArticle {
             throw Error(error);
         }
         finally {
-            await dataSource.destroy();
+            await this.dataSource.destroy();
         }
     }
 }

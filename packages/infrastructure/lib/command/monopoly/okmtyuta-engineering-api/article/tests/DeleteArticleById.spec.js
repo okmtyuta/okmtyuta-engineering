@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const DeleteArticleById_1 = require("../DeleteArticleById");
 const RegisterArticle_1 = require("../RegisterArticle");
+const data_source_1 = require("../../../../../config/data-source");
 describe("DeleteArticleById", () => {
     let mockArticle;
     let targetArticleId;
@@ -14,13 +15,13 @@ describe("DeleteArticleById", () => {
             isPublic: true,
             thumbnail: null
         };
-        const article = (await new RegisterArticle_1.RegisterArticle().register(mockArticle)).article;
+        const article = (await new RegisterArticle_1.RegisterArticle(data_source_1.AppDataSource).register(mockArticle)).article;
         console.log("Registered");
         console.log(article);
         targetArticleId = article.articleId;
     });
     it("execute", async () => {
-        const deleteResult = await new DeleteArticleById_1.DeleteArticleById().execute({ articleId: targetArticleId });
+        const deleteResult = await new DeleteArticleById_1.DeleteArticleById(data_source_1.AppDataSource).execute({ articleId: targetArticleId });
         console.log(deleteResult.articleId);
     });
 });

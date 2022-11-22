@@ -2,16 +2,19 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FetchTagByName = void 0;
 const Tag_1 = require("@okmtyuta-engineering/library/lib/db/typeorm/entity/Tag");
-const data_source_1 = require("../../../../config/data-source");
 class FetchTagByName {
+    constructor(dataSource) {
+        this.dataSource = dataSource;
+        this.dataSource = dataSource;
+    }
     async fetch(params) {
-        const dataSource = await data_source_1.AppDataSource.initialize();
+        await this.dataSource.initialize();
         try {
-            const tagRepository = await dataSource.getRepository(Tag_1.Tag);
+            const tagRepository = await this.dataSource.getRepository(Tag_1.Tag);
             const tag = await tagRepository.findOne({
                 where: {
-                    name: params.name
-                }
+                    name: params.name,
+                },
             });
             return {
                 tag: tag,
@@ -20,7 +23,7 @@ class FetchTagByName {
         catch (error) {
         }
         finally {
-            await dataSource.destroy();
+            await this.dataSource.destroy();
         }
     }
 }

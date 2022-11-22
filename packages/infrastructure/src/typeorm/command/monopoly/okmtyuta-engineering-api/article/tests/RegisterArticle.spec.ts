@@ -1,11 +1,12 @@
 import { FetchUserById } from "src/typeorm/query/monopoly/okmtyuta-engineering/user/FetchUserById";
 import { RegisterArticle } from "../RegisterArticle";
+import { AppDataSource } from '../../../../../config/data-source'
 
 describe("RegisterArticle", () => {
   let mockArticle;
 
   beforeEach(async () => {
-    const user = (await new FetchUserById().execute({userId: "1"})).user
+    const user = (await new FetchUserById(AppDataSource).execute({userId: "1"})).user
 
     mockArticle = {
       title: "テスト記事",
@@ -20,7 +21,7 @@ describe("RegisterArticle", () => {
   })
 
   it("register", async () => {
-    const article = (await new RegisterArticle().register(mockArticle));
+    const article = (await new RegisterArticle(AppDataSource).register(mockArticle));
     console.log(article);
   })
 })
