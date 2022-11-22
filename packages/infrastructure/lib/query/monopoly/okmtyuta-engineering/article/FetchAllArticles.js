@@ -17,6 +17,7 @@ class FetchAllArticles {
             };
         }
         catch (error) {
+            console.log(error);
             new Error(error);
         }
         finally {

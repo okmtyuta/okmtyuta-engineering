@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const DeleteAllArticles_1 = require("../DeleteAllArticles");
-const data_source_1 = require("../../../../../config/data-source");
+const test_data_source_1 = require("../../../../../tests/test-data-source");
 describe("DeleteAllArticles", () => {
     it("deleteAll", async () => {
-        const deleteResult = await new DeleteAllArticles_1.DeleteAllArticle(data_source_1.AppDataSource).execute();
+        const deleteResult = await new DeleteAllArticles_1.DeleteAllArticle(test_data_source_1.TestDataSource).execute();
         console.log(deleteResult);
     });
 });

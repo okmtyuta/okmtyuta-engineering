@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const RegisteUser_1 = require("../RegisteUser");
-const data_source_1 = require("../../../../../config/data-source");
+const test_data_source_1 = require("../../../../../tests/test-data-source");
 describe('RegisterUser', () => {
     let mockUser;
     beforeEach(async () => {
@@ -10,7 +10,7 @@ describe('RegisterUser', () => {
         };
     });
     it('execute', async () => {
-        const user = await new RegisteUser_1.RegisterUser(data_source_1.AppDataSource).execute(mockUser);
+        const user = await new RegisteUser_1.RegisterUser(test_data_source_1.TestDataSource).execute(mockUser);
         console.log(user);
     });
 });

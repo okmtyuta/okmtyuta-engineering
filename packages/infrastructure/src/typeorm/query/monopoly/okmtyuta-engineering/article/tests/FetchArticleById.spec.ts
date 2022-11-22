@@ -1,10 +1,10 @@
-import { FetchArticleById } from "../FetchArticleById";
-import { AppDataSource } from '../../../../../config/data-source'
+import { FetchArticleById } from '../FetchArticleById'
+import { TestDataSource } from '../../../../../tests/test-data-source'
 
-describe("FetchArticleById", () => {
-  it("fetch", async () => {
-    const article = await new FetchArticleById(AppDataSource).fetch({articleId: "8"});
+describe('FetchArticleById', () => {
+  it('fetch', async () => {
+    const article = await new FetchArticleById(TestDataSource).fetch({ articleId: '8' })
 
-    console.log(article);
+    console.log(article)
   })
 })

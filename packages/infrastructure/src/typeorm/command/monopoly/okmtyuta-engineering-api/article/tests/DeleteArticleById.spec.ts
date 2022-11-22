@@ -1,6 +1,6 @@
 import { DeleteArticleById } from "../DeleteArticleById";
 import { RegisterArticle } from "../RegisterArticle";
-import { AppDataSource } from '../../../../../config/data-source'
+import { TestDataSource } from "../../../../../tests/test-data-source"
 
 describe("DeleteArticleById", () => {
   let mockArticle;
@@ -16,7 +16,7 @@ describe("DeleteArticleById", () => {
       thumbnail: null
     }
 
-    const article = (await new RegisterArticle(AppDataSource).register(mockArticle)).article
+    const article = (await new RegisterArticle(TestDataSource).register(mockArticle)).article
     console.log("Registered");
     console.log(article)
 
@@ -24,7 +24,7 @@ describe("DeleteArticleById", () => {
   })
 
   it("execute", async () => {
-    const deleteResult = await new DeleteArticleById(AppDataSource).execute({articleId: targetArticleId});
+    const deleteResult = await new DeleteArticleById(TestDataSource).execute({articleId: targetArticleId});
     console.log(deleteResult.articleId);
   })
 })

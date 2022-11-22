@@ -1,9 +1,9 @@
-import { FetchTagByName } from "../FetchTagByName"
-import { AppDataSource } from '../../../../../config/data-source'
+import { FetchTagByName } from '../FetchTagByName'
+import { TestDataSource } from '../../../../../tests/test-data-source'
 
-describe("FetchTagByName", () => {
-  it("execute", async () => {
-    const tag = await new FetchTagByName(AppDataSource).fetch({name: "テストタグ"})
+describe('FetchTagByName', () => {
+  it('execute', async () => {
+    const tag = await new FetchTagByName(TestDataSource).fetch({ name: 'テストタグ' })
     console.log(tag)
   })
 })

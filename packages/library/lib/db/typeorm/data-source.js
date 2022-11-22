@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppDataSource = void 0;
 require("reflect-metadata");
 const typeorm_1 = require("typeorm");
+const entity_1 = require("./entity");
 exports.AppDataSource = new typeorm_1.DataSource({
     type: 'postgres',
     host: 'localhost',
@@ -12,7 +13,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     database: 'okmtyuta',
     synchronize: true,
     logging: false,
-    entities: [__dirname + "/entity/*.ts"],
+    entities: [entity_1.Article, entity_1.Tag, entity_1.User],
     migrations: [__dirname + "/migrations/*.ts"],
     subscribers: [],
 });

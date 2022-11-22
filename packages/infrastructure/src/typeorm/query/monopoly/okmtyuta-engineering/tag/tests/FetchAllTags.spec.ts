@@ -1,9 +1,9 @@
-import { FetchAllTags } from "../FetchAllTags"
-import { AppDataSource } from '../../../../../config/data-source'
+import { FetchAllTags } from '../FetchAllTags'
+import { TestDataSource } from '../../../../../tests/test-data-source'
 
-describe("FetchAllTags", () => {
-  it("execute", async () => {
-    const tags = await new FetchAllTags(AppDataSource).execute()
+describe('FetchAllTags', () => {
+  it('execute', async () => {
+    const tags = await new FetchAllTags(TestDataSource).execute()
     console.log(tags.tags.length)
   })
 })

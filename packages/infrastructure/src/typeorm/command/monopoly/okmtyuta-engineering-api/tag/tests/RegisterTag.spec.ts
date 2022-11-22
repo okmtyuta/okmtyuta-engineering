@@ -1,5 +1,5 @@
 import { RegisterTag } from "../RegisterTag";
-import { AppDataSource } from "../../../../../config/data-source";
+import { TestDataSource } from "../../../../../tests/test-data-source";
 
 describe("RegisterTag", () => {
   let mockTag;
@@ -9,7 +9,7 @@ describe("RegisterTag", () => {
     }
   })
   it("execute", async () => {
-    const tag = await new RegisterTag(AppDataSource).execute(mockTag);
+    const tag = await new RegisterTag(TestDataSource).execute(mockTag);
     console.log(tag)
   })
 })

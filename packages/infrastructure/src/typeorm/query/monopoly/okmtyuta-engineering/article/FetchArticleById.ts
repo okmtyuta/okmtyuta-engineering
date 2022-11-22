@@ -33,7 +33,8 @@ export class FetchArticleById implements IFetchArticleById {
         article: article,
       }
     } catch (error) {
-      return error
+      console.log(error)
+      new Error(error)
     } finally {
       await this.dataSource.destroy()
     }

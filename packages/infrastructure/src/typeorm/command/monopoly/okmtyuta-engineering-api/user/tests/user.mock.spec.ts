@@ -1,5 +1,5 @@
 import { RegisterUser } from '../RegisteUser'
-import { AppDataSource } from '../../../../../config/data-source'
+import { TestDataSource } from '../../../../../tests/test-data-source'
 
 describe('RegisterUser', () => {
   let mockUser
@@ -11,7 +11,7 @@ describe('RegisterUser', () => {
   })
 
   it('execute', async () => {
-    const user = await new RegisterUser(AppDataSource).execute(mockUser)
+    const user = await new RegisterUser(TestDataSource).execute(mockUser)
     console.log(user)
   })
 })

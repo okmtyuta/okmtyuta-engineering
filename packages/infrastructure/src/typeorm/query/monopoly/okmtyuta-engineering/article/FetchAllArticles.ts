@@ -33,6 +33,7 @@ export class FetchAllArticles implements IFetchAllArticles {
       }
     } catch (error) {
       // TODO: Errorをカスタムエラーにしたい
+      console.log(error)
       new Error(error)
     } finally {
       // データベースとの接続を解除
