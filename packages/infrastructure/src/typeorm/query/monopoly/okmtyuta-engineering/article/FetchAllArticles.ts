@@ -26,7 +26,10 @@ export class FetchAllArticles implements IFetchAllArticles {
       const articleRepository = await this.dataSource.getRepository(Article)
 
       // すべてのarticleを取得
-      const articles = await articleRepository.createQueryBuilder('article').leftJoinAndSelect('article.tags', 'tag').leftJoinAndSelect('article.user', 'user').getMany()
+      const articles = await articleRepository.createQueryBuilder('article')
+        .leftJoinAndSelect('article.tags', 'tag')
+        .leftJoinAndSelect('article.user', 'user')
+        .getMany()
 
       return {
         articles: articles,
