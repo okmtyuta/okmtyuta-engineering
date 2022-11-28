@@ -3,7 +3,7 @@ import { FetchAllArticles } from '@okmtyuta-engineering/infrastructure/lib/query
 import { RegisterArticleDto } from '@okmtyuta-engineering/infrastructure/lib/command/monopoly/okmtyuta-engineering-api/article/dto/RegisterArticle.dto';
 import { RegisterArticle } from '@okmtyuta-engineering/infrastructure/lib/command/monopoly/okmtyuta-engineering-api/article/RegisterArticle';
 import { DeleteAllArticle } from '@okmtyuta-engineering/infrastructure/lib/command/monopoly/okmtyuta-engineering-api/article/DeleteAllArticles';
-import { AppDataSource } from '@okmtyuta-engineering/library/lib/db/typeorm/data-source';
+import { AppDataSource } from 'src/db/data-source';
 
 @Injectable()
 export class ArticleService {

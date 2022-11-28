@@ -8,5 +8,5 @@ export declare class RegisterArticleDto {
     isPublic: boolean;
     thumbnail: string | null;
     tags: Tag[];
-    user: User;
+    user: User | null;
 }

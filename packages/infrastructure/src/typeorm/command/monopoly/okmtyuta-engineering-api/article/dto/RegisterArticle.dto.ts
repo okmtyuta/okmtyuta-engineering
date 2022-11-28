@@ -29,8 +29,8 @@ export class RegisterArticleDto {
   thumbnail: string | null;
 
   @IsOptional()
-  tags: Tag[]
+  tags: Tag[];
 
   @IsNotEmpty()
-  user: User;
+  user: User | null;
 }

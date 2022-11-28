@@ -1,10 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import CONSTANTS from '@okmtyuta-engineering/library/lib/constants/constants';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
-      origin: 'http://localhost:3000',
+      origin: CONSTANTS.URL.WEB,
       credentials: true,
     },
   });

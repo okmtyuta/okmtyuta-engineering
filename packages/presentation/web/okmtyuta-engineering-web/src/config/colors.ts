@@ -1,6 +1,11 @@
-import { pallets } from './pallets'
+import { pallets } from './pallets';
 
-export const colors = {
+const colors = {
   themeColor: pallets.suo,
   charColor: pallets.yokan,
-}
+  lightCharColor: pallets.sumi,
+  backgroundLightGray: pallets.shironeri,
+  white: pallets.shiro,
+};
+
+export default colors;

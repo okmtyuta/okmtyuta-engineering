@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { RegisterArticle } from './components/pages/RegisterArticle'
+import { RegisterArticle } from './components/pages/article/RegisterArticle'
 
 function App() {
   return <RegisterArticle />

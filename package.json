@@ -18,9 +18,8 @@
   "prettier": {
     "trailingComma": "es5",
     "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 25000
+    "semi": true,
+    "singleQuote": true
   },
   "dependencies": {
     "@okmtyuta-engineering/web": "^0.1.0",
