@@ -1,4 +1,4 @@
-interface StylingInterface {
+interface IStyled {
   margin?: string;
   padding?: string;
   width?: string;
@@ -8,6 +8,9 @@ interface StylingInterface {
   color?: string;
   backgroundColor?: string;
   borderRadius?: string;
+  border?: string;
+  outline?: string;
+  transition?: string;
 }
 
-export default StylingInterface;
+export default IStyled;

@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react'
-import { RegisterArticle } from './components/pages/article/RegisterArticle'
+import { useEffect, useState } from 'react';
+import Base from './components/Base/Base';
+import { RegisterArticle } from './components/pages/article/RegisterArticle';
 
 function App() {
-  return <RegisterArticle />
+  return (
+    <Base>
+      <RegisterArticle />
+    </Base>
+  );
 }
 
-export default App
+export default App;

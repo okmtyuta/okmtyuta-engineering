@@ -1,9 +1,8 @@
 import { useRef, useEffect, useState } from 'react';
-import fonts from '../../../config/fonts';
 import { STextArea } from '../../styled/input/STextArea';
-import StylingInterface from '../../styled/StylingInterface';
+import IStyled from '../../styled/IStyled';
 
-interface AutoResizingTextFieldProps extends StylingInterface {
+interface AutoResizingTextFieldProps extends IStyled {
   placeholder?: string;
   border?: string;
 }

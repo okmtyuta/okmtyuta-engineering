@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import StylingInterface from '../StylingInterface';
+import IStyled from '../IStyled';
 
-interface SContainerProps extends StylingInterface {
+interface SContainerProps extends IStyled {
   minHeight?: string;
   maxHeight?: string;
 }
@@ -12,7 +12,7 @@ export const SContainer = styled.div<SContainerProps>`
   width: ${(props) => props.width || 'auto'};
   height: ${(props) => props.height || 'auto'};
   min-height: ${(props) => props.minHeight || 'auto'};
-  max-height: ${(props) => props.maxHeight || 'auto'};
+  max-height: ${(props) => props.maxHeight || 'initial'};
 
   color: ${(props) => props.color || 'inherit'};
   background-color: ${(props) => props.backgroundColor || 'transparent'};
