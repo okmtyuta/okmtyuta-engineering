@@ -2,16 +2,12 @@ import styled, { css } from 'styled-components';
 import { fontSizing } from '../../../config/fonts';
 import IStyled from '../IStyled';
 
-interface SFlexContainerProps extends IStyled {
+interface SCharContainerProps extends IStyled {
   minHeight?: string;
   maxHeight?: string;
-  gap?: string;
-  align?: string;
-  justify?: string;
 }
 
-export const SFlexContainer = styled.div<SFlexContainerProps>`
-  display: flex;
+export const SCharContainer = styled.span<SCharContainerProps>`
   margin: ${(props) => props.margin || '0'};
   padding: ${(props) => props.padding || '0'};
   width: ${(props) => props.width || 'auto'};
@@ -24,9 +20,6 @@ export const SFlexContainer = styled.div<SFlexContainerProps>`
 
   font-family: ${(props) => props.fontFamily || 'inherit'};
   border-radius: ${(props) => props.borderRadius || '0'};
-  gap: ${(props) => props.gap || '0'};
-  align-items: ${(props) => props.align || 'flex-start'};
-  justify-content: ${(props) => props.justify || 'flex-start'};
 
   ${(props) => {
     return props.fontSizeType

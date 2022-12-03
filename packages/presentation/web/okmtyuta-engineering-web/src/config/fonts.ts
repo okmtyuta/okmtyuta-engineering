@@ -1,3 +1,6 @@
+import { css } from 'styled-components';
+import breakPoints from './breakPoints';
+
 const h1 = {
   desktop: 42,
   mobile: 32,
@@ -30,7 +33,7 @@ const h6 = {
 
 const body = {
   desktop: 16,
-  mobile: 16,
+  mobile: 14,
 };
 
 const subBody = {
@@ -54,8 +57,9 @@ const overline = {
 };
 
 const fontFamilies = {
-  sansSerifEn: "'Noto Sans', sans-serif",
-  sansSerifJa: "'Noto Sans JP', sans-serif",
+  sansSerifEn: "'Hiragino Kaku Gothic ProN', sans-serif",
+  sansSerifJa: "'Hiragino Kaku Gothic ProN', sans-serif",
+  anton: "'Anton', sans-serif",
 };
 
 const fontSizes = {
@@ -70,6 +74,33 @@ const fontSizes = {
   button,
   caption,
   overline,
+};
+
+export type fontSizeTypes =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'body'
+  | 'subBody'
+  | 'button'
+  | 'caption'
+  | 'overline';
+
+export const fontSizing = (fontSizeType: fontSizeTypes) => {
+  return css`
+    @media screen and (min-width: ${breakPoints.pcMin}px) {
+      font-size: ${fontSizes[fontSizeType].desktop}px;
+    }
+    @media screen and (min-width: ${breakPoints.tabMin}px) and (max-width: ${breakPoints.tabMax}px) {
+      font-size: ${fontSizes[fontSizeType].mobile}px;
+    }
+    @media (max-width: ${breakPoints.spMax}px) {
+      font-size: ${fontSizes[fontSizeType].mobile}px;
+    }
+  `;
 };
 
 const fonts = {

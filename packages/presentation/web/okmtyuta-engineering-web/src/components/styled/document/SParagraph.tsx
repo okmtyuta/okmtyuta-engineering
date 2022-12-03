@@ -1,18 +1,18 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { fontSizing } from '../../../config/fonts';
 import IStyled from '../IStyled';
 
-interface SContainerProps extends IStyled {
-  minHeight?: string;
-  maxHeight?: string;
+interface SParagraphProps extends IStyled {
+  maxWidth?: string;
+  textAlign?: "center" | "right" | "left" | "justify"
 }
 
-export const SContainer = styled.div<SContainerProps>`
+export const SParagraph = styled.p<SParagraphProps>`
   margin: ${(props) => props.margin || '0'};
-  padding: ${(props) => props.padding || '0'};
+  padding: ${(props) => props.padding || '0 0 12px 0'};
   width: ${(props) => props.width || 'auto'};
   height: ${(props) => props.height || 'auto'};
-  font-size: ${(props) => props.fontSize || 'inherit'};
+  ${fontSizing('body')}
   font-family: ${(props) => props.fontFamily || 'inherit'};
   font-weight: ${(props) => props.fontWeight || 'inherit'};
   color: ${(props) => props.color || 'inherit'};
@@ -24,14 +24,6 @@ export const SContainer = styled.div<SContainerProps>`
   font-family: ${(props) => props.fontFamily || 'inherit'};
   font-size: ${(props) => props.fontSize || 'inherit'};
   border-radius: ${(props) => props.borderRadius || '0'};
-
-  ${(props) => {
-    return props.fontSizeType
-      ? fontSizing(props.fontSizeType)
-      : css`
-          font-size: ${props.fontSize || 'inherit'};
-        `;
-  }}
-  min-height: ${(props) => props.minHeight || 'auto'};
-  max-height: ${(props) => props.maxHeight || 'initial'};
+  text-align: ${props => props.textAlign || "left"};
+  line-height: 1.8;
 `;

@@ -1,13 +1,13 @@
-import styled, { css } from 'styled-components';
-import { fontSizing } from '../../../config/fonts';
+import styled from 'styled-components';
 import IStyled from '../IStyled';
 
-interface SContainerProps extends IStyled {
+interface SListItemProps extends IStyled {
   minHeight?: string;
   maxHeight?: string;
+  listSytle?: string;
 }
 
-export const SContainer = styled.div<SContainerProps>`
+export const SListItem = styled.li<SListItemProps>`
   margin: ${(props) => props.margin || '0'};
   padding: ${(props) => props.padding || '0'};
   width: ${(props) => props.width || 'auto'};
@@ -25,13 +25,5 @@ export const SContainer = styled.div<SContainerProps>`
   font-size: ${(props) => props.fontSize || 'inherit'};
   border-radius: ${(props) => props.borderRadius || '0'};
 
-  ${(props) => {
-    return props.fontSizeType
-      ? fontSizing(props.fontSizeType)
-      : css`
-          font-size: ${props.fontSize || 'inherit'};
-        `;
-  }}
-  min-height: ${(props) => props.minHeight || 'auto'};
-  max-height: ${(props) => props.maxHeight || 'initial'};
+  list-style: ${(props) => props.listSytle || 'none'};
 `;

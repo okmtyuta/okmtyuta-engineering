@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { Article } from './components/pages/article/Article';
 import Base from './components/Base/Base';
-import { RegisterArticle } from './components/pages/article/RegisterArticle';
 
 function App() {
   return (
     <Base>
-      <RegisterArticle />
+      <Article />
     </Base>
   );
 }

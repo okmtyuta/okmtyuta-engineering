@@ -6,4 +6,5 @@ export const pallets = {
   shironeri: '#f3f3f2',
   shiro: '#ffffff',
   sumi: '#595857',
+  kikyonezu: '#95949a',
 };

@@ -1,86 +1,53 @@
-import { $getRoot, $getSelection } from 'lexical';
-
+import colors from '../../../config/colors';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
+import { CheckListPlugin } from '@lexical/react/LexicalCheckListPlugin';
+import { ListPlugin } from '@lexical/react/LexicalListPlugin';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import styled from 'styled-components';
 import { AutoFocusPlugin } from './plugins/AutoFocusPlugin';
-import editorConfig from './config';
 import { ToolbarPlugin } from './plugins/ToolbarPlugin';
+import { CodeHighlightPlugin } from './plugins/CodeHighlightPlugin';
+import { EditorContainer } from './EditorContainer';
+import { plainEditorConfig } from './config';
 
 const Placeholder = styled.div`
-  color: #999;
+  color: ${colors.lightCharColor};
   overflow: hidden;
   position: absolute;
   text-overflow: ellipsis;
-  top: 15px;
-  left: 10px;
   font-size: 15px;
   user-select: none;
   display: inline-block;
   pointer-events: none;
+  top: 20px;
+  left: 12px;
 `;
 
 const ContentEditableStyled = styled(ContentEditable)`
-  min-height: 150px;
-  resize: none;
-  font-size: 15px;
-  caret-color: rgb(5, 5, 5);
   position: relative;
   tab-size: 1;
   outline: 0;
-  padding: 15px 10px;
-  caret-color: #444;
+  caret-color: ${colors.lightCharColor};
+  min-height: 420px;
 `;
 
-const EditorContainer = styled.div`
-  background: #fff;
-  margin: 20px auto 20px auto;
-  border-radius: 2px;
-  max-width: 600px;
-  color: #000;
-  position: relative;
-  line-height: 20px;
-  font-weight: 400;
-  text-align: left;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-`;
-
-const theme = {};
-
-// When the editor changes, you can get notified via the
-// LexicalOnChangePlugin!
 function onChange(editorState: { read: (arg0: () => void) => void }) {
-  editorState.read(() => {
-    // Read the contents of the EditorState here.
-    const root = $getRoot();
-    const selection = $getSelection();
-
-  });
-}
-
-// Catch any errors that occur during Lexical updates and log them
-// or throw them as needed. If you don't throw them, Lexical will
-// try to recover gracefully without losing user data.
-function onError(error: any) {
-  console.error(error);
+  editorState.read(() => {});
 }
 
 export const PlainEditor = () => {
-  const initialConfig = {
-    namespace: 'MyEditor',
-    theme,
-    onError,
-  };
-
   return (
-    <LexicalComposer initialConfig={editorConfig}>
+    <LexicalComposer initialConfig={plainEditorConfig}>
       <ToolbarPlugin />
-      <EditorContainer>
+      <EditorContainer
+        backgroundColor={colors.white}
+        minHeight="420px"
+        padding="12px"
+      >
         <RichTextPlugin
           contentEditable={<ContentEditableStyled />}
           placeholder={<Placeholder>Enter some plain text...</Placeholder>}
@@ -88,6 +55,9 @@ export const PlainEditor = () => {
         />
         <OnChangePlugin onChange={onChange} />
         <HistoryPlugin />
+        <ListPlugin />
+        <CheckListPlugin />
+        <CodeHighlightPlugin />
         <AutoFocusPlugin />
       </EditorContainer>
     </LexicalComposer>

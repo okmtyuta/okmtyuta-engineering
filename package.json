@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "ts-run": "./node_modules/.bin/ts-node",
-    "format": "prettier --write packages"
+    "start-api:dev": "npm run start:dev -w packages/presentation/rest-api/okmtyuta-engineering-api"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +23,9 @@
   },
   "dependencies": {
     "@okmtyuta-engineering/web": "^0.1.0",
+    "@okmtyuta-engineering/api": "^0.1.0",
+    "@okmtyuta-engineering/library": "^0.1.0",
+    "@okmtyuta-engineering/infrastructure": "^0.1.0",
     "typeorm": "^0.3.10"
   }
 }
