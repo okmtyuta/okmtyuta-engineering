@@ -1,4 +1,4 @@
-version: "1"
+version: "3"
 services:
   okmtyuta-engineering-api:
     container_name: "okmtyuta-engineering-api"
@@ -11,4 +11,13 @@ services:
     ports:
       - 8001:8001
     command: npm run start-api:dev
-  
+
+  database:
+    image: postgres:14.6
+    tty: true
+    environment:
+      POSTGRES_DB: okmtyuta
+      POSTGRES_USER: okmtyuta
+      POSTGRES_PASSWORD: s#kn18k0a0
+    ports:
+      - 5432:5432
