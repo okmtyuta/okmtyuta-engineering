@@ -21,6 +21,9 @@
   - `POSTGRES_PASSWORD`: データベースのパスワード名。
   - `POSTGRES_PORT`: データベースのポート番号。数字である必要がある。
 
+### ビルドする
+ルートディレクトリで`npm run build`を実行すると全体をビルドできる。
+
 ### Dockerの起動
 各コマンドはMakefileで設定してあるので、具体的には次のコマンドを順番に実行する。
   - `build-okmtyuta-engineering-api`: APIのビルド。
@@ -45,3 +48,9 @@ packages/
 ```
 
 ## Reference
+
+## Update Log
+Updated at 4th December 2022
+
+## License
+To be prepared.
