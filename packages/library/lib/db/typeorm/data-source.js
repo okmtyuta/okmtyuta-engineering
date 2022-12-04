@@ -7,14 +7,14 @@ const entity_1 = require("./entity");
 exports.AppDataSource = new typeorm_1.DataSource({
     type: 'postgres',
     host: 'localhost',
-    port: 5432,
-    username: 'okmtyuta',
-    password: 's#kn18k0a0',
-    database: 'okmtyuta',
+    port: Number(process.env.POSTGRES_PORT),
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
     synchronize: true,
     logging: false,
     entities: [entity_1.Article, entity_1.Tag, entity_1.User],
-    migrations: [__dirname + "/migrations/*.ts"],
+    migrations: [__dirname + '/migrations/*.ts'],
     subscribers: [],
 });
 //# sourceMappingURL=data-source.js.map

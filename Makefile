@@ -10,3 +10,6 @@ run-database:
 stop-database:
 	echo "databaseを停止します"
 	docker-compose rm -fsv database
+stop-all-service:
+	echo "すべてのサービスを停止します。"
+	docker-compose down
