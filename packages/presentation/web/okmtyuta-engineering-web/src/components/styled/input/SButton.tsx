@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import IStyled from '../IStyled';
 
-interface SButtonProps extends IStyled {
+export interface SButtonProps extends IStyled {
   isActive?: boolean;
   activeColor?: string;
   activeBackgroundColor?: string;

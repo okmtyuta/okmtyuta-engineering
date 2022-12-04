@@ -16,7 +16,7 @@ interface BaseProps {
   children: ReactNode;
 }
 
-const Base = (props: BaseProps) => {
+export const Base = (props: BaseProps) => {
   return (
     <BaseStyled>
       <SFlexContainer margin='20px' fontSizeType='h1' color={colors.themeColor} fontFamily={fonts.fontFamilies.anton} justify="center">okmtyuta Engineering</SFlexContainer>

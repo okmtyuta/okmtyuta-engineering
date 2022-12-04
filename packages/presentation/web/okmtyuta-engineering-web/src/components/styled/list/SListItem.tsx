@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import IStyled from '../IStyled';
 
-interface SListItemProps extends IStyled {
+export interface SListItemProps extends IStyled {
   minHeight?: string;
   maxHeight?: string;
   listSytle?: string;

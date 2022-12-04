@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import IStyled from '../IStyled';
 
-interface SingleFrameProps extends IStyled {
+export interface SingleFrameProps extends IStyled {
   maxWidth?: string;
 }
 

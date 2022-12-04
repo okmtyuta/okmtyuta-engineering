@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import IStyled from '../IStyled';
 
-interface SInputProps extends IStyled {
+export interface SInputProps extends IStyled {
   placeholder?: string;
   border?: string;
 }

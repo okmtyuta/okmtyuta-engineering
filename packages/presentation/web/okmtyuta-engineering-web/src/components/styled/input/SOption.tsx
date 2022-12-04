@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import IStyled from '../IStyled';
 
-interface SOptionProps extends IStyled {}
+export interface SOptionProps extends IStyled {}
 
 export const SOption = styled.option<SOptionProps>`
   margin: ${(props) => props.margin || '0'};

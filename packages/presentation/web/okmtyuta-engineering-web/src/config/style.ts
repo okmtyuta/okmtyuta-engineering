@@ -1,4 +1,4 @@
-const stylingConstants = {
+export const stylingConstants = {
   margin: 8,
   padding: 8,
   borderRadius: 8,

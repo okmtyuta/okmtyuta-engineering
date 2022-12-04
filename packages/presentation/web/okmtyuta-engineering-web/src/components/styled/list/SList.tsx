@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { fontSizing } from '../../../config/fonts';
 import IStyled from '../IStyled';
 
-interface SListProps extends IStyled {
+export interface SListProps extends IStyled {
   minHeight?: string;
   maxHeight?: string;
   direction?: string;

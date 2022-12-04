@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import colors from '../../../config/colors';
 import IStyled from '../IStyled';
 
-interface STextAreaProps extends IStyled {
+export interface STextAreaProps extends IStyled {
   placeholder?: string;
   placeholderColor?: string;
   border?: string;

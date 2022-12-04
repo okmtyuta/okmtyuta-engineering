@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import IStyled from '../IStyled';
 
-interface SSelectProps extends IStyled {}
+export interface SSelectProps extends IStyled {}
 
 export const SSelect = styled.select<SSelectProps>`
   margin: ${(props) => props.margin || '0'};

@@ -1,5 +1,5 @@
 import { SingleFrame } from '../../styled/frame/SingleFrame';
-import { SH1, SH2, SParagraph } from '../../styled/document';
+import { SH2, SParagraph } from '../../styled/document';
 import { ArticleTitle } from '../../ui/Article/ArticleTitle';
 import { SContainer } from '../../styled/container/SContainer';
 import { ArticleCard } from '../../ui/Article/ArticleCard';

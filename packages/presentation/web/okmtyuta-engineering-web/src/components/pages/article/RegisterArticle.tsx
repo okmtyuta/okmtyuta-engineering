@@ -1,7 +1,7 @@
 import colors from '../../../config/colors';
 import fonts from '../../../config/fonts';
 import { SContainer } from '../../styled/container/SContainer';
-import stylingConstants from '../../../config/stylingConstants';
+import stylingConstants from '../../../config/style';
 import { PlainEditor } from '../../ui/Editor/PlainEditor';
 
 export const RegisterArticle = () => {
