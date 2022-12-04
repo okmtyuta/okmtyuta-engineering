@@ -28,7 +28,6 @@
     "@okmtyuta-engineering/web": "^0.1.0",
     "@okmtyuta-engineering/api": "^0.1.0",
     "@okmtyuta-engineering/library": "^0.1.0",
-    "@okmtyuta-engineering/infrastructure": "^0.1.0",
-    "typeorm": "^0.3.10"
+    "@okmtyuta-engineering/infrastructure": "^0.1.0"
   }
 }

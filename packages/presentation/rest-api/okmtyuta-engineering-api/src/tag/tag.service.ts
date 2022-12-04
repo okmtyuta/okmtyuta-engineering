@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { FetchAllTags } from '@okmtyuta-engineering/infrastructure/lib/query/monopoly/okmtyuta-engineering/tag/FetchAllTags';
-import { AppDataSource } from '@okmtyuta-engineering/library/lib/db/typeorm/data-source';
+import { AppDataSource } from 'src/db/data-source';
 
 @Injectable()
 export class TagService {
