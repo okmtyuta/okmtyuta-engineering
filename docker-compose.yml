@@ -9,7 +9,7 @@ services:
     volumes:
       - ./packages/presentation/rest-api/okmtyuta-engineering-api:/okmtyuta/packages/presentation/rest-api/okmtyuta-engineering-api/
     ports:
-      - 8001:8001
+      - ${OKMTYUTA_ENGINEERING_API_PORT}:${OKMTYUTA_ENGINEERING_API_PORT}
     command: npm run start-api:prod
     env_file:
       - .env
