@@ -7,8 +7,11 @@
     "ts-run": "./node_modules/.bin/ts-node",
     
     "start-api:dev": "npm run start:dev -w packages/presentation/rest-api/okmtyuta-engineering-api",
+    "start-api:prod": "npm run start:prod -w packages/presentation/rest-api/okmtyuta-engineering-api",
 
-    "storybook": "npm run storybook -w packages/presentation/web/okmtyuta-engineering-web"
+    "storybook": "npm run storybook -w packages/presentation/web/okmtyuta-engineering-web",
+
+    "build": "npm run build -w packages/library && npm run build -w packages/infrastructure"
   },
   "author": "",
   "license": "ISC",
