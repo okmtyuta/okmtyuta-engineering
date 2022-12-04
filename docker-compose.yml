@@ -9,6 +9,6 @@ services:
     volumes:
       - ./packages/presentation/rest-api/okmtyuta-engineering-api:/okmtyuta/packages/presentation/rest-api/okmtyuta-engineering-api/
     ports:
-      - 8000:8000
+      - 8001:8001
     command: npm run start-api:dev
   
