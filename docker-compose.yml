@@ -10,7 +10,9 @@ services:
       - ./packages/presentation/rest-api/okmtyuta-engineering-api:/okmtyuta/packages/presentation/rest-api/okmtyuta-engineering-api/
     ports:
       - 8001:8001
-    command: npm run start-api:dev
+    command: npm run start-api:prod
+    env_file:
+      - .env
 
   database:
     image: postgres:14.6

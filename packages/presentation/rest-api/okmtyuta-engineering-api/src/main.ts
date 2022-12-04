@@ -1,8 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import CONSTANTS from '@okmtyuta-engineering/library/lib/constants/constants';
-import * as dotenv from 'dotenv';
-dotenv.config();
+import { env } from '@okmtyuta-engineering/library/lib/constant/env';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -11,6 +10,6 @@ async function bootstrap() {
       credentials: true,
     },
   });
-  await app.listen(process.env.OKMTYUTA_ENGINEERING_API_PORT || 8000);
+  await app.listen(env.OKMTYUTA_ENGINEERING_API_PORT || 8001);
 }
 bootstrap();
