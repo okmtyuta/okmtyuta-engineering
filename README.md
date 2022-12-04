@@ -1,4 +1,7 @@
-# okmtyuta-enngineering Documentation
+# okmtyuta-engineering Documentation
+<div style="text-align: center;">
+    <img alt="okmtyuta icon" src="public/global_okmtyuta.png" width="300">
+</div>
 
 ## 使用中のポート
 |  使用するサービス  |  ポート番号  |
