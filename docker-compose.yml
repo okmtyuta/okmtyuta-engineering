@@ -1,0 +1,14 @@
+version: "1"
+services:
+  okmtyuta-engineering-api:
+    container_name: "okmtyuta-engineering-api"
+    build:
+      context: .
+      dockerfile: ./packages/presentation/rest-api/okmtyuta-engineering-api/Dockerfile
+    tty: true
+    volumes:
+      - ./packages/presentation/rest-api/okmtyuta-engineering-api:/okmtyuta/packages/presentation/rest-api/okmtyuta-engineering-api/
+    ports:
+      - 8000:8000
+    command: npm run start-api:dev
+  

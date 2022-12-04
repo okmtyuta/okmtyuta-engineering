@@ -20,7 +20,8 @@ class RegisterTag {
             };
         }
         catch (error) {
-            throw Error();
+            console.log(error);
+            throw new Error(error);
         }
         finally {
             await this.dataSource.destroy();

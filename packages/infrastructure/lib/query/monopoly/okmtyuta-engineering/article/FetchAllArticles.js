@@ -11,7 +11,10 @@ class FetchAllArticles {
         await this.dataSource.initialize();
         try {
             const articleRepository = await this.dataSource.getRepository(Article_1.Article);
-            const articles = await articleRepository.createQueryBuilder('article').leftJoinAndSelect('article.tags', 'tag').leftJoinAndSelect('article.user', 'user').getMany();
+            const articles = await articleRepository.createQueryBuilder('article')
+                .leftJoinAndSelect('article.tags', 'tag')
+                .leftJoinAndSelect('article.user', 'user')
+                .getMany();
             return {
                 articles: articles,
             };
