@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class IndexController {
   @Get('')
   async getIndex() {
-    return process.env.POSTGRES_DB;
+    return 'this is index';
   }
 }

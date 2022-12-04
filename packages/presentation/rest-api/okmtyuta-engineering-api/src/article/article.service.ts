@@ -8,7 +8,6 @@ import { AppDataSource } from 'src/db/data-source';
 @Injectable()
 export class ArticleService {
   async getArticles() {
-    console.log(AppDataSource);
     const articles = (await new FetchAllArticles(AppDataSource).fetch())
       .articles;
     return articles;
