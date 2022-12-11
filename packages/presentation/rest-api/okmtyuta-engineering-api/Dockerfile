@@ -23,5 +23,5 @@ COPY ./packages/infrastructure ./packages/infrastructure
 # okmtyuta-engineering-api以下
 COPY ./packages/presentation/rest-api/okmtyuta-engineering-api ./packages/presentation/rest-api/okmtyuta-engineering-api
 
-RUN npm run build
 RUN npm install
+RUN npm run build
