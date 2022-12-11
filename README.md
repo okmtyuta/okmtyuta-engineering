@@ -27,12 +27,15 @@
 ### Dockerの起動
 各コマンドはMakefileで設定してあるので、具体的には次のコマンドを順番に実行する。
   - `build-okmtyuta-engineering-api`: APIのビルド。
+  - `up-okmtyuta-engineering-api`: APIコンテナの起動。
   - `run-okmtyuta-engineering-api`: APIの起動。
+
+  - `build-database`: データベースのビルド。
   - `run-database`: データベースの起動。
 
 ### サービスの停止
   - `stop-database`: データベースの停止。
-  - `stop-all-service`: 全てのサービスの停止。
+  - `stop-okmtyuta-engineering`: APIの停止。
 
 ## packagesのディレクトリ構成
 ```

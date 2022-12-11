@@ -6,17 +6,18 @@ services:
       context: .
       dockerfile: ./packages/presentation/rest-api/okmtyuta-engineering-api/Dockerfile
     tty: true
+    env_file:
+      - .env
     volumes:
       - ./packages/presentation/rest-api/okmtyuta-engineering-api:/okmtyuta/packages/presentation/rest-api/okmtyuta-engineering-api/
     ports:
       - ${OKMTYUTA_ENGINEERING_API_PORT}:${OKMTYUTA_ENGINEERING_API_PORT}
-    command: npm run start-api:prod
-    env_file:
-      - .env
 
   database:
     image: postgres:14.6
     tty: true
+    env_file:
+      - .env
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
