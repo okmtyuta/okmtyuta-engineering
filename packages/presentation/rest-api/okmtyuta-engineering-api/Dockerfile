@@ -15,13 +15,13 @@ COPY ./package*.json ./
 # library以下
 COPY ./packages/library ./packages/library
 # domain以下
-COPY ./packages/domain ./packages/domain
+# COPY ./packages/domain ./packages/domain
 # usecase以下
-COPY ./packages/usecase ./packages/usecase
+# COPY ./packages/usecase ./packages/usecase
 # infrastructure以下
 COPY ./packages/infrastructure ./packages/infrastructure
 # okmtyuta-engineering-api以下
 COPY ./packages/presentation/rest-api/okmtyuta-engineering-api ./packages/presentation/rest-api/okmtyuta-engineering-api
 
-RUN npm run build
 RUN npm install
+RUN npm run build
