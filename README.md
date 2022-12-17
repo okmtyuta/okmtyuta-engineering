@@ -15,11 +15,13 @@
 
 ### .envファイルを用意する
 .envファイルをルートディレクトリに作成する。.envファイルに書く必要があることは以下の通り。
+  - `ENVIRONMENT`: 実行環境: `development || production`
   - `OKMTYUTA_ENGINEERING_API_PORT`: APIのポート番号。数字である必要がある。
   - `POSTGRES_DB`: データベースのテーブル名。
   - `POSTGRES_USER`: データベースのユーザー名。
   - `POSTGRES_PASSWORD`: データベースのパスワード名。
   - `POSTGRES_PORT`: データベースのポート番号。数字である必要がある。
+  - `PRODUCTION_DATABASE_HOST`: production環境のデータベースホストの名前。一般に`database`
 
 ### ビルドする
 ルートディレクトリで`npm run build`を実行すると全体をビルドできる。
@@ -45,15 +47,19 @@ packages/
 　 ├ infrastructure/  : インフラ層
 　 ├ library/         : ライブラリ層
 　 ├ presentation/    : プレゼンテーション層
-　 │ 　 └ rest-api/   : APIを配置
-　 │ 　 └ web/        : clientを配置
+　 │ 　 └ api/        : APIを配置
+　 │ 　 └ client/     : clientを配置
 　 └ usecase/         : usecase層
 ```
 
-## Reference
+## Mode Documents
+If you want to know more information, you can see docs directory.
+
+## References
 
 ## Update Log
 Updated at 4th December 2022
+Updated at 18th December 2022
 
 ## License
 To be prepared.
