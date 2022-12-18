@@ -1,5 +1,5 @@
-import { DeleteAllArticle } from "../DeleteAllArticles"
-import { TestDataSource } from "../../../../../tests/test-data-source"
+import { DeleteAllArticle } from "src/typeorm/command/monopoly/okmtyuta-engineering-api/article/DeleteAllArticles";
+import { TestDataSource } from 'src/typeorm/tests/test-data-source';
 
 describe("DeleteAllArticles", () => {
   it("deleteAll", async () => {

@@ -1,5 +1,5 @@
-import { DeleteArticleById } from '../DeleteArticleById';
-import { TestDataSource } from '../../../../../tests/test-data-source';
+import { DeleteArticleById } from 'src/typeorm/command/monopoly/okmtyuta-engineering-api/article/DeleteArticleById';
+import { TestDataSource } from 'src/typeorm/tests/test-data-source';
 import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity';
 import { Repository } from 'typeorm';
 import { mockAnonymousArticle } from './mockArticle';
@@ -30,6 +30,6 @@ describe('DeleteArticleById', () => {
     const deleteResult = await new DeleteArticleById(TestDataSource).execute({
       articleId: targetArticleId,
     });
-    expect(deleteResult).toBeDefined()
+    expect(deleteResult).toBeDefined();
   });
 });

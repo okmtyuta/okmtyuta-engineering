@@ -1,22 +1,22 @@
-import { RegisterUserDto } from './dto/RegisterUserDto';
+import { CreateUserDto } from './dto/CreateUserDto';
 import { User } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/User';
 import { DataSource } from 'typeorm';
 
-interface RegisterUserResult {
+interface CreateUserResult {
   user: User
 }
 
-interface IRegisterUser {
-  execute(params: RegisterUserDto): Promise<RegisterUserResult>
+interface ICreateUser {
+  execute(params: CreateUserDto): Promise<CreateUserResult>
 }
 
-export class RegisterUser implements IRegisterUser {
+export class CreateUser implements ICreateUser {
   constructor(
     private dataSource: DataSource
   ) {
     this.dataSource = dataSource
   }
-  async execute(params: RegisterUserDto): Promise<RegisterUserResult> {
+  async execute(params: CreateUserDto): Promise<CreateUserResult> {
     await this.dataSource.initialize()
 
     try {

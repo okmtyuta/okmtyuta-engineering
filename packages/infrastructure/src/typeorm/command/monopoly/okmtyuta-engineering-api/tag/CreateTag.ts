@@ -1,20 +1,20 @@
 import { Tag } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Tag'
 import { DataSource } from 'typeorm'
-import { RegisterTagDto } from './dto/RegisterTag.dto'
+import { CreateTagDto } from './dto/CreateTag.dto'
 
-interface RegisterTagResult {
+interface CreateTagResult {
   tag: Tag
 }
 
-interface IRegisterTag {
-  execute(params: RegisterTagDto): Promise<RegisterTagResult>
+interface ICreateTag {
+  execute(params: CreateTagDto): Promise<CreateTagResult>
 }
 
-export class RegisterTag implements IRegisterTag {
+export class CreateTag implements ICreateTag {
   constructor(private dataSource: DataSource) {
     this.dataSource = dataSource
   }
-  async execute(params: RegisterTagDto): Promise<RegisterTagResult> {
+  async execute(params: CreateTagDto): Promise<CreateTagResult> {
     await this.dataSource.initialize()
 
     try {

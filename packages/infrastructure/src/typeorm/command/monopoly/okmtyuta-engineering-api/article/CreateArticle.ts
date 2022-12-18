@@ -1,21 +1,17 @@
-import { RegisterArticleDto } from './dto/RegisterArticle.dto'
+import { CreateArticleDto } from './dto/CreateArticle.dto'
 import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article'
 import { DataSource } from 'typeorm'
 
-interface RegisterArticleResult {
-  article: Article
+interface ICreateArticle {
+  execute(params: CreateArticleDto): Promise<Article>
 }
 
-interface IRegisterArticle {
-  register(params: RegisterArticleDto): Promise<RegisterArticleResult>
-}
-
-export class RegisterArticle implements IRegisterArticle {
+export class CreateArticle implements ICreateArticle {
   constructor(private dataSource: DataSource) {
     this.dataSource = dataSource
   }
 
-  async register(params: RegisterArticleDto): Promise<RegisterArticleResult> {
+  async execute(params: CreateArticleDto): Promise<Article> {
     await this.dataSource.initialize()
 
     try {
@@ -37,9 +33,7 @@ export class RegisterArticle implements IRegisterArticle {
 
       const createdArticle = await articleRepository.save(article)
 
-      return {
-        article: createdArticle,
-      }
+      return createdArticle
     } catch (error) {
       throw Error(error)
     } finally {
