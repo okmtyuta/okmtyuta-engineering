@@ -8,8 +8,8 @@ const PRODUCTION_ENVIRONMENT_VARIABLE = {
 
 const DEVELOPMENT_ENVIRONMENT_VARIABLE = {
   URL: {
-    API: 'http://localhost:8000',
-    WEB: 'http://localhost:3000',
+    API: 'http://localhost:8001',
+    WEB: 'http://localhost:3001',
   },
 }
 
