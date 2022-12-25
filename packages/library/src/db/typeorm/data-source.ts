@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { env } from 'src/constant/env';
+import { env } from '../../constant/env';
 import { DataSource } from 'typeorm';
 import { Article, Tag, User } from './entity';
 

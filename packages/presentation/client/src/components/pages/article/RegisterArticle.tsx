@@ -16,20 +16,20 @@ export const RegisterArticle = () => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [content, setContent] = useState<string>('');
-  const [articles, setArticles] = useState<Article[]>([])
+  const [articles, setArticles] = useState<Article[]>([]);
+
   const getAllArticles = async () => {
     const response = await articleApi.getAllArticles();
 
     if (response.ok) {
-      console.log(response.data)
-      setArticles(response.data)
+      console.log(response.data);
+      setArticles(response.data);
     } else {
-
     }
   };
 
   useEffect(() => {
-    getAllArticles()
+    getAllArticles();
   }, []);
 
   return (
@@ -78,7 +78,7 @@ export const RegisterArticle = () => {
             onClick={async () => {
               const params = {
                 title: title,
-                content: content,
+                paragraphs: content.split('\n').filter((con) => con !== ''),
                 description: description,
                 references: [],
                 isPublic: true,
@@ -88,7 +88,7 @@ export const RegisterArticle = () => {
               };
               const response = await articleApi.postArticle(params);
               if (response.ok) {
-                getAllArticles()
+                getAllArticles();
               }
             }}
           >
@@ -98,11 +98,7 @@ export const RegisterArticle = () => {
 
         <SList>
           {articles.map((article) => {
-            return (
-              <SListItem key={ulid()}>
-                {article.title}
-              </SListItem>
-            )
+            return <SListItem key={ulid()}>{article.title}</SListItem>;
           })}
         </SList>
       </SingleFrame>

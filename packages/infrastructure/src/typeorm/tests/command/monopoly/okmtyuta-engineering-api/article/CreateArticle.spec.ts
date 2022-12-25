@@ -3,14 +3,14 @@ import { CreateArticle } from 'src/typeorm/command/monopoly/okmtyuta-engineering
 import { TestDataSource } from 'src/typeorm/tests/test-data-source';
 import { mockAnonymousArticle } from './mockArticle';
 
-describe('RegisterArticle', () => {
+describe('CreateArticle', () => {
   let mockAnonymousArticleParams;
   let createdArticle: Article;
 
   beforeEach(async () => {
     mockAnonymousArticleParams = {
       title: mockAnonymousArticle.title,
-      content: mockAnonymousArticle.content,
+      paragraphs: mockAnonymousArticle.paragraphs,
       description: mockAnonymousArticle.description,
       references: mockAnonymousArticle.references,
       isPublic: mockAnonymousArticle.isPublic,
@@ -28,7 +28,7 @@ describe('RegisterArticle', () => {
     await TestDataSource.destroy();
   });
 
-  it('register', async () => {
+  it('create', async () => {
     createdArticle = await new CreateArticle(TestDataSource).execute(
       mockAnonymousArticleParams
     );

@@ -2,7 +2,7 @@ import { Tag, User } from '@okmtyuta-engineering/library/lib/db/typeorm/entity';
 
 interface MockArticle {
   title: string;
-  content: string;
+  paragraphs: string[];
   description: string;
   postedAt: Date;
   updatedAt: Date | null;
@@ -16,7 +16,7 @@ interface MockArticle {
 
 export const mockAnonymousArticle: MockArticle = {
   title: 'テスト記事',
-  content: 'これはテスト記事です',
+  paragraphs: ['これはテスト記事です', "段落1", "段落2"],
   description: 'これはテスト記事です',
   postedAt: new Date(),
   updatedAt: null,

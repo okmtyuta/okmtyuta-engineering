@@ -8,8 +8,8 @@ export class CreateArticleDto {
   title: string;
 
   @IsNotEmpty()
-  @IsString()
-  content: string;
+  @IsString({each: true})
+  paragraphs: string[];
 
   @IsNotEmpty()
   @IsString()

@@ -1,40 +1,35 @@
 import { CreateUserDto } from './dto/CreateUserDto';
 import { User } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/User';
 import { DataSource } from 'typeorm';
-
-interface CreateUserResult {
-  user: User
-}
+import { create } from 'domain';
 
 interface ICreateUser {
-  execute(params: CreateUserDto): Promise<CreateUserResult>
+  execute(params: CreateUserDto): Promise<User>;
 }
 
 export class CreateUser implements ICreateUser {
-  constructor(
-    private dataSource: DataSource
-  ) {
-    this.dataSource = dataSource
+  constructor(private dataSource: DataSource) {
+    this.dataSource = dataSource;
   }
-  async execute(params: CreateUserDto): Promise<CreateUserResult> {
-    await this.dataSource.initialize()
+  async execute(params: CreateUserDto): Promise<User> {
+    await this.dataSource.initialize();
 
     try {
-      const userRepository = await this.dataSource.getRepository(User)
+      const userRepository = await this.dataSource.getRepository(User);
 
       const user = await userRepository.create({
-        name: params.name
-      })
+        name: params.name,
+        mailAddress: params.mailAddress,
+        password: params.password,
+      });
 
-      const createdUser = await userRepository.save(user)
+      const createdUser = await userRepository.save(user);
 
-      return {
-        user: createdUser,
-      }
+      return createdUser;
     } catch (error) {
-      throw Error()
+      throw Error();
     } finally {
-      await this.dataSource.destroy()
+      await this.dataSource.destroy();
     }
   }
 }

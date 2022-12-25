@@ -19,7 +19,7 @@ export class CreateArticle implements ICreateArticle {
 
       const article = await articleRepository.create({
         title: params.title,
-        content: params.content,
+        paragraphs: params.paragraphs,
         description: params.description,
         references: params.references,
         isPublic: params.isPublic,
