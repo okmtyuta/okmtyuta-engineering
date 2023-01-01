@@ -7,6 +7,7 @@ export interface SFlexContainerProps extends IStyled {
   gap?: string;
   align?: string;
   justify?: string;
+  direction?: 'row' | 'column';
 }
 
 export const SFlexContainer = styled.div<SFlexContainerProps>`
@@ -18,4 +19,5 @@ export const SFlexContainer = styled.div<SFlexContainerProps>`
   gap: ${(props) => props.gap || '0'};
   align-items: ${(props) => props.align || 'flex-start'};
   justify-content: ${(props) => props.justify || 'flex-start'};
+  flex-direction: ${(props) => props.direction || 'row'};
 `;

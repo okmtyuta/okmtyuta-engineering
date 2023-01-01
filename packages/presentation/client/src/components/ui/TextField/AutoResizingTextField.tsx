@@ -5,12 +5,13 @@ import IStyled from '../../styled/IStyled';
 interface AutoResizingTextFieldProps extends IStyled {
   placeholder?: string;
   border?: string;
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-function useAutoResizeTextArea(
+export const useAutoResizeTextArea = (
   value: string | undefined,
   height: string | undefined
-) {
+) => {
   const ref = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -19,15 +20,14 @@ function useAutoResizeTextArea(
       return;
     }
 
-    const { borderTopWidth, borderBottomWidth } =
-      getComputedStyle(element);
+    const { borderTopWidth, borderBottomWidth } = getComputedStyle(element);
 
     element.style.height = height || '1em';
     element.style.height = `calc(${element.scrollHeight}px + ${borderTopWidth} + ${borderBottomWidth})`;
   }, [value]);
 
   return ref;
-}
+};
 
 export const AutoResizingTextField = (props: AutoResizingTextFieldProps) => {
   const [value, setValue] = useState('');
@@ -46,7 +46,13 @@ export const AutoResizingTextField = (props: AutoResizingTextFieldProps) => {
       color={props.color}
       backgroundColor={props.backgroundColor}
       value={value}
-      onChange={(e) => setValue(e.target.value)}
+      onChange={(event) => {
+        setValue(event.target.value);
+        
+        if (props.onChange){
+          props.onChange(event);
+        }
+      }}
       ref={textAreaRef}
     />
   );

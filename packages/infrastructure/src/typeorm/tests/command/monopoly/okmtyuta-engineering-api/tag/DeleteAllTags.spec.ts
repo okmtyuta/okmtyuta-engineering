@@ -1,5 +1,5 @@
-import { DeleteAllTags } from '../DeleteAllTags'
-import { TestDataSource } from '../../../../../tests/test-data-source'
+import { DeleteAllTags } from 'src/typeorm/command/monopoly/okmtyuta-engineering-api/tag/DeleteAllTags'
+import { TestDataSource } from 'src/typeorm/tests/test-data-source';
 
 describe('DeleteAllTags', () => {
   it('execute', async () => {

@@ -2,14 +2,14 @@ import { Tag } from "@okmtyuta-engineering/library/lib/db/typeorm/entity/Tag";
 import { User } from "@okmtyuta-engineering/library/lib/db/typeorm/entity/User";
 import { IsNotEmpty, IsString, IsOptional, IsArray, IsBoolean } from "class-validator"
 
-export class RegisterArticleDto {
+export class CreateArticleDto {
   @IsNotEmpty()
   @IsString()
   title: string;
 
   @IsNotEmpty()
-  @IsString()
-  content: string;
+  @IsString({each: true})
+  paragraphs: string[];
 
   @IsNotEmpty()
   @IsString()

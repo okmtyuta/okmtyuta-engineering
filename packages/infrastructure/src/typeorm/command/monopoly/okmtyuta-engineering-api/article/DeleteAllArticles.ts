@@ -1,32 +1,30 @@
-import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article'
-import { DataSource, DeleteResult } from 'typeorm'
-
-interface DeleteAllArticleResult {
-  deleteResult: DeleteResult
-}
+import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article';
+import { DataSource, DeleteResult } from 'typeorm';
 
 interface IDeleteAllArticle {
-  execute(): Promise<DeleteAllArticleResult>
+  execute(): Promise<DeleteResult>;
 }
 
 export class DeleteAllArticle implements IDeleteAllArticle {
   constructor(private dataSource: DataSource) {
-    this.dataSource = dataSource
+    this.dataSource = dataSource;
   }
 
-  async execute(): Promise<DeleteAllArticleResult> {
-    await this.dataSource.initialize()
+  async execute(): Promise<DeleteResult> {
+    await this.dataSource.initialize();
 
     try {
-      const articleRepository = await this.dataSource.getRepository(Article)
-      const deleteResult = await articleRepository.createQueryBuilder('article').delete().from(Article).execute()
-      return {
-        deleteResult: deleteResult,
-      }
+      const articleRepository = await this.dataSource.getRepository(Article);
+      const deleteResult = await articleRepository
+        .createQueryBuilder('article')
+        .delete()
+        .from(Article)
+        .execute();
+      return deleteResult;
     } catch (error) {
-      throw Error()
+      throw Error();
     } finally {
-      await this.dataSource.destroy()
+      await this.dataSource.destroy();
     }
   }
 }

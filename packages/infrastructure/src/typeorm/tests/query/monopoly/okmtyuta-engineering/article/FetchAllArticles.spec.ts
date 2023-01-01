@@ -1,5 +1,5 @@
-import { FetchAllArticles } from '../FetchAllArticles'
-import { TestDataSource } from '../../../../../tests/test-data-source'
+import { FetchAllArticles } from 'src/typeorm/query/monopoly/okmtyuta-engineering/article/FetchAllArticles'
+import { TestDataSource } from 'src/typeorm/tests/test-data-source';
 
 describe('FetchArticles', () => {
   it('fetch', async () => {

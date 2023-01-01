@@ -49,7 +49,7 @@ export const get = async (url: string): Promise<ApiResult<unknown>> => {
   return await handleResponse(data)
 }
 
-// postリクエストで
+// postリクエスト
 export const post = async (url: string, body: Record<string, unknown> | Record<string, unknown>[]): Promise<ApiResult<unknown>> => {
   const data = await http(url, {
     method: 'POST',

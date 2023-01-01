@@ -1,6 +1,14 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn, JoinTable, JoinColumn, ManyToOne } from 'typeorm'
-import { Tag } from './Tag'
-import { User } from './User'
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+  JoinTable,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
+import { Tag } from './Tag';
+import { User } from './User';
 
 @Entity()
 export class Article {
@@ -8,38 +16,39 @@ export class Article {
     type: 'smallint',
     comment: '記事のID',
   })
-  readonly articleId!: string
+  readonly articleId!: string;
 
   @Column({
     type: 'text',
     comment: '記事のタイトル',
   })
-  title!: string
+  title!: string;
 
   @Column({
     type: 'text',
-    comment: '記事の内容',
+    array: true,
+    comment: '記事の段落',
   })
-  content!: string
+  paragraphs!: string[];
 
   @Column({
     type: 'text',
     comment: '記事の概要',
   })
-  description!: string
+  description!: string;
 
   @Column({
     type: 'date',
     comment: '記事の投稿日',
   })
-  postedAt!: Date
+  postedAt!: Date;
 
   @Column({
     type: 'date',
     comment: '記事の更新日',
     nullable: true,
   })
-  updatedAt: Date | null
+  updatedAt: Date | null;
 
   @Column({
     type: 'text',
@@ -47,37 +56,37 @@ export class Article {
     comment: '記事の参考文献',
     nullable: true,
   })
-  references: string[] | null
+  references: string[] | null;
 
   @Column({
     type: 'boolean',
     comment: '記事の公開設定',
     nullable: true,
   })
-  isPublic!: boolean
+  isPublic!: boolean;
 
   @Column({
     type: 'boolean',
     comment: '記事のピックアップ設定',
   })
-  isPickedUp!: boolean
+  isPickedUp!: boolean;
 
   @Column({
     type: 'text',
     comment: '記事のサムネイルへのパス',
     nullable: true,
   })
-  thumbnail: string | null
+  thumbnail: string | null;
 
   @ManyToMany(() => Tag, (tag) => tag.articles, {
-    onDelete: "CASCADE",
+    onDelete: 'CASCADE',
     nullable: true,
   })
   @JoinTable()
   tags: Tag[];
 
   @ManyToOne(() => User, (user) => user.articles, {
-    onDelete: "CASCADE",
+    onDelete: 'CASCADE',
     nullable: true,
   })
   @JoinColumn({ name: 'userId' })
