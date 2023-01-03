@@ -11,6 +11,15 @@ const getAllArticles = async (): Promise<ApiResult<Article[]>> => {
     : response;
 };
 
+const getArticleById = async (
+  articleId: string
+): Promise<ApiResult<Article>> => {
+  const response = await get(`${CONSTANTS.URL.API.ARTICLE.DETAIL}/${articleId}`);
+  return response.ok
+    ? { ...response, data: response.data as Article }
+    : response;
+};
+
 const deleteAllArticles = async (): Promise<ApiResult<DeleteResult>> => {
   const response = await get(CONSTANTS.URL.API.ARTICLE.DELETE_ALL);
   return response.ok
@@ -44,7 +53,7 @@ const articleApi = {
   getAllArticles,
   deleteAllArticles,
   postArticle,
-  // getAllTags,
+  getArticleById,
 };
 
 export default articleApi;
