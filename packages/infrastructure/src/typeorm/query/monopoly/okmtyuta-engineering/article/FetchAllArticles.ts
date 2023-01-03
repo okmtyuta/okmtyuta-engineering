@@ -1,14 +1,9 @@
 import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Article'
 import { DataSource } from 'typeorm'
 
-// 返り値の型定義
-interface FetchAllArticlesResult {
-  articles: Article[]
-}
-
 // クラスのexecuteメソッドの型定義
 interface IFetchAllArticles {
-  fetch(): Promise<FetchAllArticlesResult>
+  execute(): Promise<Article[]>
 }
 
 // Fetchクラス本体
@@ -17,7 +12,7 @@ export class FetchAllArticles implements IFetchAllArticles {
     this.dataSource = dataSource
   }
 
-  async fetch(): Promise<FetchAllArticlesResult> {
+  async execute(): Promise<Article[]> {
     // データベースとの接続
     await this.dataSource.initialize()
 
@@ -31,9 +26,7 @@ export class FetchAllArticles implements IFetchAllArticles {
         .leftJoinAndSelect('article.user', 'user')
         .getMany()
 
-      return {
-        articles: articles,
-      }
+      return articles
     } catch (error) {
       // TODO: Errorをカスタムエラーにしたい
       console.log(error)
