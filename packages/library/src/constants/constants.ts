@@ -10,9 +10,10 @@ const DEVELOPMENT_ENVIRONMENT_VARIABLE = {
   URL: {
     API: {
       ARTICLE: {
-        CREATE: 'http://localhost:8001/article/register',
+        CREATE: 'http://localhost:8001/article/create',
         DELETE_ALL: 'http://localhost:8001/article/deleteAll',
-        GET_ALL: 'http://localhost:8001/article/list'
+        GET_ALL: 'http://localhost:8001/article/all',
+        DETAIL: 'http://localhost:8001/article/detail',
       },
     },
     WEB: 'http://localhost:3000',

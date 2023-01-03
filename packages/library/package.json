@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "migration:create": "typeorm migration:create db/typeorm/migrations/migration",
+    "migration:create": "typeorm migration:create src/db/typeorm/migrations/migration",
     "migration:generate": "typeorm-ts-node-commonjs migration:generate src/db/typeorm/migrations/migration -d src/db/typeorm/data-source.ts",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d src/db/typeorm/data-source.ts",
     "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/db/typeorm/data-source.ts",

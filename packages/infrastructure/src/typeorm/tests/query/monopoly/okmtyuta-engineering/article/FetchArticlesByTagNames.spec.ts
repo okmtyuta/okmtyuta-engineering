@@ -7,8 +7,8 @@ describe('FetchArticleByTags', () => {
       tags: ['1-8番目', '3-8番目'],
     });
 
-    for (let i = 0; i < articles.articles.length; i++) {
-      console.log(articles.articles[0].tags);
+    for (let i = 0; i < articles.length; i++) {
+      console.log(articles[0].tags);
     }
   });
 });

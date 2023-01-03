@@ -2,12 +2,8 @@ import { Article } from '@okmtyuta-engineering/library/lib/db/typeorm/entity/Art
 import { DataSource } from 'typeorm'
 import { FetchArticlesByTagNamesDto } from './dto/FetchArticlesByTagNamesDto'
 
-interface FetchArticlesByTagNamesResult {
-  articles: Article[]
-}
-
 interface IFetchArticlesByTagNames {
-  execute(params: FetchArticlesByTagNamesDto): Promise<FetchArticlesByTagNamesResult>
+  execute(params: FetchArticlesByTagNamesDto): Promise<Article[]>
 }
 
 export class FetchArticlesByTagNames implements IFetchArticlesByTagNames {
@@ -15,7 +11,7 @@ export class FetchArticlesByTagNames implements IFetchArticlesByTagNames {
     this.dataSource = dataSource
   }
 
-  async execute(params: FetchArticlesByTagNamesDto): Promise<FetchArticlesByTagNamesResult> {
+  async execute(params: FetchArticlesByTagNamesDto): Promise<Article[]> {
     await this.dataSource.initialize()
 
     try {
@@ -34,9 +30,7 @@ export class FetchArticlesByTagNames implements IFetchArticlesByTagNames {
       })
         
 
-      return {
-        articles: articleFiltered,
-      }
+      return articleFiltered
     } catch (error) {
       console.log(error)
       throw new Error(error)
